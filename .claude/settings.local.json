@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx vitest run src/lib/__tests__/auth.test.ts)",
+      "Bash(npm audit fix)",
+      "Bash(npm install next@15.5.12)",
+      "Bash(npm test)",
+      "mcp__playwright"
+    ]
+  }
+}

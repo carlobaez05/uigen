@@ -1,5 +1,4 @@
 name: Claude Code
-
 on:
   issue_comment:
     types: [created]
@@ -9,7 +8,6 @@ on:
     types: [opened, assigned]
   pull_request_review:
     types: [submitted]
-
 jobs:
   claude:
     if: |
@@ -37,8 +35,6 @@ jobs:
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          prompt: "The project is already set up with all dependencies installed. The server is already running at localhost:3000. Logs from it are being written to logs.txt. If needed, you can query the db with 'sqlite3' cli. If needed, use the mcp__playwright set of tools to launch the browser and interact with the app. You are a helpful assistant that provides feedback and suggestions on code changes in pull requests. When a user tags you with @claude in a comment, review the context of the pull request, including the code changes, and provide constructive feedback, suggestions for improvement, or answer any questions the user may have. Be concise and specific in your responses, and focus on helping the user improve their code."
-          claude_args: --mcp-config '{"mcpServers":{"playwright":{"command":"npx","args":["@playwright/mcp@latest","--allowed-origins","localhost:3000;cdn.tailwindcss.com;esm.sh"]}}}' --allowed-tools Bash(npm:*),Bash(sqlite3:*),mcp__playwright__browser_snapshot,mcp__playwright__browser_click,mcp__playwright__browser_type,mcp__playwright__browser_navigate,mcp__playwright__browser_navigate_back,mcp__playwright__browser_navigate_forward,mcp__playwright__browser_scroll,mcp__playwright__browser_hover,mcp__playwright__browser_select_option,mcp__playwright__browser_check,mcp__playwright__browser_uncheck,mcp__playwright__browser_fill,mcp__playwright__browser_press_key,mcp__playwright__browser_wait_for,mcp__playwright__browser_take_screenshot,mcp__playwright__browser_network_requests,mcp__playwright__browser_console_messages,mcp__playwright__browser_close,mcp__playwright__browser_resize,mcp__playwright__browser_handle_dialog,mcp__playwright__browser_file_upload,mcp__playwright__browser_pdf_save,mcp__playwright__browser_evaluate
           # Optional: Give a custom prompt to Claude. If this is not specified, Claude will perform the instructions specified in the comment that tagged it.
           # prompt: 'Update the pull request description to include a summary of changes.'
 
